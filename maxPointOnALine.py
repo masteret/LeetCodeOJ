@@ -27,29 +27,33 @@ def maxPoints(points):
 
             if xpoint.x == ypoint.x and xpoint.y == ypoint.y:
                 if same_list.get(xpoint.tostring()) is None:
-                    same_list.update({xpoint.tostring(): 0})
+                    same_list.update({xpoint.tostring():0})
                 else:
                     same_list.update({xpoint.tostring():same_list.get(xpoint.tostring())+1})
 
             if grad_list.get(grad) is None:
                 grad_list.update({grad:[[xpoint.tostring(), ypoint.tostring()]]})
-                print grad, grad_list.get(grad)
             else:
                 inserted = False
                 for index, item in enumerate(grad_list.get(grad)):
                     if xpoint.tostring() in item and ypoint.tostring() not in item:
-                        print xpoint.tostring(), item
+                        # print xpoint.tostring(), item
                         grad_list.get(grad)[index] += [ypoint.tostring()]
                         inserted = True
                     elif xpoint.tostring() not in item and ypoint.tostring() in item:
-                        print xpoint.tostring(), item
+                        # print xpoint.tostring(), item
                         grad_list.get(grad)[index] += [xpoint.tostring()]
                         inserted = True
+                    elif xpoint.tostring() in item and ypoint.tostring() in item:
+                        inserted = True
                 if not inserted:
+                    print xpoint.tostring(), ypoint.tostring(), "not inserted in", grad_list.get(grad)
                     grad_list.update({grad:grad_list.get(grad).extend([xpoint.tostring(), ypoint.tostring()])})
 
-    # for key, item in grad_list.items():
-    #     print key, item
+    for key, item in grad_list.items():
+        print key, item
+    for key, item in same_list.items():
+        print key, item
     return None
 
 if __name__ == "__main__":
