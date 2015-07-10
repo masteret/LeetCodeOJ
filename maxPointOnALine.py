@@ -16,12 +16,7 @@ def maxPoints(points):
         return str(len(points))
 
     grad_list = {}
-    # same_list = {}
     for xcount, xpoint in enumerate(points):
-        # if same_list.get(xpoint) is None:
-        #     same_list.update({xpoint:1})
-        # else:
-        #     same_list.update({xpoint:same_list.get(xpoint)+1})
         for ypoint in points[xcount+1:]:
             if ypoint.x - xpoint.x == 0:
                 grad = -1.0
@@ -34,38 +29,22 @@ def maxPoints(points):
             else:
                 inserted = False
                 for index, item in enumerate(current_grad):
-                    # print xpoint, ypoint, item
                     if xpoint in item and ypoint not in item:
-                        current_grad[index] += [ypoint]
+                        current_grad[index].append(ypoint)
                         inserted = True
                     elif xpoint not in item and ypoint in item:
-                        current_grad[index] += [xpoint]
+                        current_grad[index].append(xpoint)
                         inserted = True
                     elif xpoint in item and ypoint in item:
                         inserted = True
+                    # inserted = False
                 if not inserted:
                     current_grad.append([xpoint, ypoint])
-                    # print xpoint, ypoint, "not inserted in", grad_list.get(grad)
-
-
-    # for same_key, same_item in same_list.items():
-    #     for grad_key, grad_items in grad_list.items():
-    #         for grad_index, grad_item in enumerate(grad_items):
-    #             if grad_item.count(same_key) > 0 and grad_item.count(same_key) < same_item:
-    #                 # print same_key, same_item, grad_item, grad_item.count(same_key)
-    #                 for x in range(0, same_item - grad_item.count(same_key)):
-    #                     grad_items[grad_index] += [same_key]
-    #                 grad_list.update({grad_key:grad_items})
-    #                 # print same_key, same_item, grad_item, grad_item.count(same_key)
 
     result = 0
     for grad_key, grad_items in grad_list.items():
         for grad_item in grad_items:
-            # print grad_key,
-            # for indi_point in grad_item:
-                # print indi_point.tostring(),
             result = max(result, len(grad_item))
-            # print
 
     return result
 
