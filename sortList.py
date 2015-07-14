@@ -62,6 +62,7 @@ class Solution:
         elif head.next is None:
             return head
         else:
+            print head.val
             sortedList = self.sortList(head.next)
             insert = False
             if head.val <= sortedList.val:
