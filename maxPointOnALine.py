@@ -1,12 +1,12 @@
 __author__ = 'ET'
 import timeit
-from fractions import Fraction
-# Definition for a point.
+Definition for a point.
 class Point:
     def __init__(self, a=0, b=0):
         self.x = a
         self.y = b
-
+from fractions import Fraction
+    
 class Solution:
     # @param {Point[]} points
     # @return {integer}
@@ -24,12 +24,16 @@ class Solution:
             xpoint = self.tostring(xpoint)
     
             point_occur = same_point_list.get(str(xpoint))
+            # update a list of same point occurence
             if point_occur is None:
                 same_point_list.update({str(xpoint):0})
             else:
                 same_point_list.update({str(xpoint):point_occur+1})
+
+            # start to loop the 2nd point from the starting of 1st point, so it will connect every points to every points
             for ypoint in points[xcount+1:]:
                 ypoint = self.tostring(ypoint)
+                # calculate the grad of the line
                 if ypoint[0] - xpoint[0] == 0 and ypoint[1] - xpoint[1] == 0:
                     grad = "samepoint"
                 elif ypoint[0] - xpoint[0] == 0:
@@ -43,6 +47,7 @@ class Solution:
                     grad_list.update({grad:[[xpoint, ypoint]]})
                 else:
                     inserted = False
+                    # check if current grad list has the 2 points in it
                     for index, item in enumerate(current_grad):
                         if xpoint in item and ypoint not in item:
                             current_grad[index].append(ypoint)
