@@ -37,6 +37,7 @@ class LFUCache(object):
 
         # invalidate least use cache
         if len(self.recent) == self.capacity and key not in self.recent:
+            # Get a sorted list of used_count based on value
             sorted_used_count = collections.Counter(self.used_count).most_common()[::-1]
             # find the least 
             least_commons = []
@@ -49,6 +50,7 @@ class LFUCache(object):
             least_recent = min([self.recent.index(int(x)) for x in least_commons if int(x) in self.recent])
             poped = str(self.recent[least_recent])
 
+            # clear the least frequent used item
             del self.cache[poped]
             del self.used_count[poped]
             self.recent.pop(self.recent.index(int(poped)))
