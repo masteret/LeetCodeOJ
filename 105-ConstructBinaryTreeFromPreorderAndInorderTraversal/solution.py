@@ -28,6 +28,12 @@ class Solution(object):
         :rtype: TreeNode
         """
         self.master = preorder
+        if len(inorder) == 0:
+            return None
+        if len(inorder) == 1:
+            self.master = self.master[1:]
+            return TreeNode(inorder[0])
+
         root = TreeNode(self.master[0])
         self.master = self.master[1:]
         root.left = self.helper(inorder[:inorder.index(root.val)])
