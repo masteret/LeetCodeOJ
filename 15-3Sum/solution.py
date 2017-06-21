@@ -36,8 +36,8 @@ class Solution(object):
         # if there is a list of solution, propagate it with your current num
         nums = sorted(nums)
         result = []
-        for i in range(len(nums)):
-            if nums[i] == nums[i-1]:
+        for i in range(len(nums)-2):
+            if nums[i] == nums[i-1] and i > 0:
                 continue
             tmp_result = self.twoSum(nums[i+1:], -nums[i])
             if tmp_result != []:
@@ -48,4 +48,4 @@ class Solution(object):
         return result
 
 a = Solution()
-print a.threeSum([-1, 0, 1, 2, -1, -4])
+print a.threeSum([0, 0, 0, 0])
