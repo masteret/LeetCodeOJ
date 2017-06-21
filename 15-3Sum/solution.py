@@ -47,7 +47,5 @@ class Solution(object):
                     result.append(tmp)
         return result
 
-        
-
 a = Solution()
 print a.threeSum([-1, 0, 1, 2, -1, -4])
