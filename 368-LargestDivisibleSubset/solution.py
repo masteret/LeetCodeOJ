@@ -28,3 +28,4 @@ class Solution(object):
 a = Solution()
 print a.largestDivisibleSubset([1,2,3,4,9,12])
 print a.largestDivisibleSubset([3,4,16,8])
+# http://www.geeksforgeeks.org/largest-divisible-subset-array/
