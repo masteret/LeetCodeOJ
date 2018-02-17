@@ -13,9 +13,7 @@ class Solution(object):
             if r1 == r2:
                 return edge
             else:
-                print r1, r2
                 parent[r1] = parent[r2] = str(ind)
-                print parent
 
 a = Solution()
 print a.findRedundantConnection([[1,2],[1,3],[2,3]])
